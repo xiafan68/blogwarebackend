@@ -1,0 +1,91 @@
+
+<!DOCTYPE html>
+<html lang="en" ng-app="ui.bootstrap.demo" id="top">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1.0, user-scalable=no">
+<link rel="icon" href="assets/favicon.ico" />
+<title>Angular directives for Bootstrap</title>
+<meta name="description"
+	content="AngularJS (Angular) native directives for Bootstrap. Small footprint (5kB gzipped!), no 3rd party JS dependencies (jQuery, bootstrap JS) required! Widgets: Accordion, Alert, Buttons, Carousel, Collapse, Dateparser, Datepicker, Datepicker Popup, Dropdown, Modal, Pager, Pagination, Popover, Position, Progressbar, Rating, Tabs, Timepicker, Tooltip, Typeahead, ">
+<meta name="google-site-verification"
+	content="7lc5HyceLDqpV_6oNHteYFfxDJH7-S3DwnJKtNUKcRg" />
+<script src="/js/angular.min.js"></script>
+<!--   <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.3/angular-animate.min.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.3/angular-touch.min.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.3/angular-sanitize.js"></script>
+    <script src="assets/plunker.js"></script>
+<script src="assets/app.js"></script> -->
+<script src="/js/ui-bootstrap-tpls-1.3.3.min.js"></script>
+
+<link href="/css/bootstrap-3.3.6-dist/css/bootstrap.min.css"
+	rel="stylesheet" />
+<body class="ng-cloak" ng-controller="MainCtrl">
+	<header class="navbar navbar-default navbar-fixed-top navbar-inner">
+		<div class="container">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle" data-toggle="collapse"
+					data-target="#bs-example-navbar-collapse-3"
+					ng-click="isCollapsed = !isCollapsed">
+					<span class="sr-only">Toggle navigation</span> <span
+						class="icon-bar"></span> <span class="icon-bar"></span> <span
+						class="icon-bar"></span>
+				</button>
+				<a class="navbar-brand visible-xs" href="#">UI Bootstrap</a>
+			</div>
+			<nav class="hidden-xs">
+				<ul class="nav navbar-nav">
+					<a href="#top" role="button" class="navbar-brand"> UI Bootstrap
+					</a>
+					<li class="dropdown" uib-dropdown><a role="button"
+						class="dropdown-toggle" uib-dropdown-toggle> Directives <b
+							class="caret"></b>
+					</a>
+						<ul class="dropdown-menu">
+							<li><a href="#accordion">Accordion</a></li>
+							<li><a href="#alert">Alert</a></li>
+							<li><a href="#buttons">Buttons</a></li>
+							<li><a href="#carousel">Carousel</a></li>
+							<li><a href="#collapse">Collapse</a></li>
+							<li><a href="#dateparser">Dateparser</a></li>
+							<li><a href="#datepicker">Datepicker</a></li>
+							<li><a href="#datepickerPopup">Datepicker Popup</a></li>
+							<li><a href="#dropdown">Dropdown</a></li>
+							<li><a href="#modal">Modal</a></li>
+							<li><a href="#pager">Pager</a></li>
+							<li><a href="#pagination">Pagination</a></li>
+							<li><a href="#popover">Popover</a></li>
+							<li><a href="#position">Position</a></li>
+							<li><a href="#progressbar">Progressbar</a></li>
+							<li><a href="#rating">Rating</a></li>
+							<li><a href="#tabs">Tabs</a></li>
+							<li><a href="#timepicker">Timepicker</a></li>
+							<li><a href="#tooltip">Tooltip</a></li>
+							<li><a href="#typeahead">Typeahead</a></li>
+						</ul></li>
+					<li><a href="#getting_started">Getting started</a></li>
+					<li class="dropdown" uib-dropdown><a role="button"
+						class="dropdown-toggle" uib-dropdown-toggle> Previous docs <b
+							class="caret"></b>
+					</a>
+						<ul class="dropdown-menu">
+							<li ng-repeat="version in oldDocs"><a
+								ng-href="{{version.url}}">{{version.version}}</a></li>
+						</ul></li>
+				</ul>
+			</nav>
+			<nav class="visible-xs" uib-collapse="!isCollapsed">
+				<ul class="nav navbar-nav">
+					<li><a href="#getting_started"
+						ng-click="isCollapsed = !isCollapsed">Getting started</a></li>
+					<li><a href="#directives_small"
+						ng-click="isCollapsed = !isCollapsed">Directives</a></li>
+				</ul>
+			</nav>
+		</div>
+	</header>
+	<div class="header-placeholder"></div>
+</body>
+</html>
