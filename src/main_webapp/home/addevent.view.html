@@ -1,0 +1,67 @@
+<!-- 注册窗口给 -->
+<div>
+	<h2>添加事件</h2>
+	<form name="form" class="form-inline" ng-submit="vm.addEvent()"
+		role="form">
+		<div class="form-group col-lg-6"
+			ng-class="{ 'has-error': form.name.$dirty && form.name.$error.required }">
+			<label for="name">事件名</label> <input type="text" name="name"
+				id="name" class="form-control" ng-model="vm.event.name" required />
+			<span ng-show="form.name.$dirty && form.name.$error.required"
+				class="help-block">请输入事件名</span>
+		</div>
+		<div class="form-group  col-lg-6"
+			ng-class="{ 'has-error': form.pattern.$dirty && form.pattern.$error.required }">
+			<label for="pattern">事件关键词</label> <input type="pattern"
+				name="pattern" id="pattern" class="form-control"
+				ng-model="vm.event.pattern" required /> <span
+				ng-show="form.pattern.$dirty && form.pattern.$error.required"
+				class="help-block">请输入关键词</span>
+		</div>
+		<div class="form-group  col-lg-6"
+			ng-class="{ 'has-error': form.description.$dirty && form.description.$error.required }">
+			<label for="description">描述</label>
+			<textarea ng-model="vm.event.description" name="description" required
+				ng-minlength="0" ng-maxlength="500" ng-trim="boolean"></textarea>
+		</div>
+		<div class="form-group  col-lg-6"
+			ng-class="{ 'has-error': form.location.$dirty && form.location.$error.required }">
+			<label for="location">地点</label> <input type="text" name="location"
+				id="location" class="form-control" ng-model="vm.event.location"
+				required /> <span
+				ng-show="form.location.$dirty && form.location.$error.required&& form.location.$error.valid"
+				class="help-block">请输入地点</span>
+		</div>
+		<div class="form-group  col-lg-6"
+			ng-class="{ 'has-error': form.url.$dirty && form.url.$error.required }">
+			<label for="url">wiki链接</label> <input type="text" name="url"
+				id="url" class="form-control" ng-model="vm.event.url" required /> <span
+				ng-show="form.url.$dirty && form.url.$error.required&& form.url.$error.valid"
+				class="help-block">请输入正确网址</span>
+		</div>
+		<div class="form-group  col-lg-6"
+			ng-class="{ 'has-error': form.imageURL.$dirty && form.imageURL.$error.required }">
+			<label for="imageURL">图片链接</label> <input type="text" name="imageURL"
+				id="imageURL" class="form-control" ng-model="vm.event.imageURL"
+				required /> <span
+				ng-show="form.imageURL.$dirty && form.imageURL.$error.required&& form.imageURL.$error.valid"
+				class="help-block">请输入正确网址</span>
+		</div>
+
+		<div class="form-actions  col-lg-8">
+			<button type="submit" ng-disabled="form.$invalid || vm.dataLoading"
+				class="btn btn-primary">增加</button>
+			<img ng-if="vm.dataLoading"
+				src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
+		</div>
+	</form>
+	<div
+		ng-init="events=[{name:'哈哈1',url:'sdfsdf',createdAt:'123123'},{name:'哈哈2',url:'sdfsdf',createdAt:'123123'},{name:'哈哈2',url:'sdfsdf',createdAt:'123123'},{name:'哈哈2',url:'sdfsdf',createdAt:'123123'}]">
+		<div ng-repeat="event in events">
+			<div class="col-lg-6">
+				<div event-Info ng-model="event"></div>
+			</div>
+		</div>
+	</div>
+
+</div>

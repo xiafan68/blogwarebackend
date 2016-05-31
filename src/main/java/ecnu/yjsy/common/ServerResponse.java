@@ -1,4 +1,4 @@
-package common;
+package ecnu.yjsy.common;
 
 /**
  * 服务器返回的一些响应状态
@@ -10,6 +10,7 @@ public class ServerResponse {
 
 	int code;
 	String message;
+	Object data;
 
 	public ServerResponse() {
 
@@ -34,6 +35,14 @@ public class ServerResponse {
 
 	public void setMessage(String message) {
 		this.message = message;
+	}
+
+	public Object getData() {
+		return data;
+	}
+
+	public void setData(Object data) {
+		this.data = data;
 	}
 
 }

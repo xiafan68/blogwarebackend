@@ -1,0 +1,8 @@
+<div>
+	<button type="button" ng-click="vm.refresh()">刷新</button>
+	<div ng-repeat="event in vm.events">
+		<div class="col-lg-6">
+			<div event-Info ng-model="event"></div>
+		</div>
+	</div>
+</div>

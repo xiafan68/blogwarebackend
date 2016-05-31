@@ -1,0 +1,40 @@
+<div class='panel panel-default' ng-init='nonEditable=true'>
+
+	<div class='panel panel-heading'>
+		<h5>
+			事件名:{{info.name}}
+			<button type="button" ng-click="edit()">编辑</button>
+			<button type="button" ng-click="save()" ng-hide='nonEditable'>保存
+			</button>
+			<button type="button" ng-click="cancel()" ng-hide='nonEditable'>取消</button>
+		</h5>
+	</div>
+	<form name="form">
+		<div class='panel panel-body'>
+			<table class="table">
+				<tbody>
+					<tr>
+						<th>添加日期：</th>
+						<td>{{info.createdAt}}</td>
+					</tr>
+					<tr>
+						<th>抽取关键词：</th>
+						<td><input name="pattern" type="text"
+							ng-disabled="nonEditable" ng-model="info.pattern"></input></td>
+					</tr>
+					<tr>
+						<th>介绍连接：</th>
+						<td>{{info.url}}</td>
+					</tr>
+					<tr>
+						<th>事件图片：</th>
+						<td>{{info.imageURL}}</td>
+					</tr>
+					<tr>
+						<th>事件简介：</th>
+						<td>{{info.description}}</td>
+					</tr>
+				</tbody>
+			</table>
+	</form>
+</div>
