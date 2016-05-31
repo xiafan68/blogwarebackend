@@ -1,12 +1,30 @@
 // 登录控制
 (function() {
 	'use strict';
-	var authApp = angular.module('auth', [ 'ngCookies' ]);
+	var authApp = angular.module('auth', [ 'ngCookies', 'ngRoute' ]);
+	authApp.config(config);
 	authApp.run(run);
-	authApp.controller('LoginController', LoginController);
 
-	LoginController.$inject = [ '$location', 'AuthenticationService', ];
-	function LoginController($location, AuthenticationService, FlashService) {
+	config.$inject = [ '$routeProvider', '$locationProvider' ];
+	function config($routeProvider, $locationProvider) {
+		$routeProvider.when('/login', {
+			controller : 'LoginController',
+			templateUrl : 'login.html',
+			controllerAs : 'vm'
+		}).when('register', {
+			controller : 'RegisterController',
+			templateUrl : 'register.html',
+			controllerAs : 'vm'
+		}).otherwise({
+			controller : 'LoginController',
+			templateUrl : 'register.html',
+			controllerAs : 'vm'
+		});
+	}
+
+	authApp.controller('LoginController', LoginController);
+	LoginController.$inject = [ '$location', '$window', 'AuthenticationService' ];
+	function LoginController($location, $window, AuthenticationService) {
 		var vm = this;
 		vm.login = login;
 		(function initController() {
@@ -21,12 +39,50 @@
 				if (response.code == 1) {
 					AuthenticationService.SetCredentials(vm.username,
 							vm.password);
-					$location.path('/home');
+					$window.location.href = "home/home.html";
+					// $location.path('/home.html');
+					// var curUrl = $location.absUrl();
 				} else {
 					// FlashService.Error(response.message);
 					vm.dataLoading = false;
 				}
 			});
+		}
+		;
+	}
+
+	authApp.controller('RegisterController', RegisterController);
+	RegisterController.$inject = [ '$window', '$http', 'AuthenticationService',
+			'$httpParamSerializerJQLike' ];
+	function RegisterController($window, $http, AuthenticationService,
+			$httpParamSerializerJQLike) {
+		var vm = this;
+		vm.register = register;
+		(function initController() {
+			// reset login status
+			AuthenticationService.ClearCredentials();
+		})();
+
+		function register() {
+			vm.dataLoading = true;
+			$http({
+				url : "account/create",
+				method : 'POST',
+				data : $httpParamSerializerJQLike(vm.account),
+				headers : {
+					'Content-Type' : 'application/x-www-form-urlencoded'
+				}
+			}).success(
+					function(response) {
+						if (response.code == 0) {
+							AuthenticationService.SetCredentials(vm.username,
+									vm.password);
+							$window.location.href = "home.html";
+						} else {
+							alert(response.message);
+						}
+						vm.dataLoading = false;
+					});
 		}
 		;
 	}
@@ -62,8 +118,7 @@
 			AuthenticationService);
 
 	AuthenticationService.$inject = [ '$http', '$cookieStore', '$rootScope' ];
-	function AuthenticationService($http, $cookieStore, $rootScope, $timeout,
-			UserService) {
+	function AuthenticationService($http, $cookieStore, $rootScope) {
 		var service = {};
 
 		service.Login = Login;
@@ -90,10 +145,9 @@
 			 * Use this for real authentication
 			 * ----------------------------------------------
 			 */
-			$http.get('account/authenticate', {
-				username : username,
-				password : password
-			}).success(function(response) {
+			$http.get(
+					'account/authenticate?username=' + username + "&password="
+							+ password).success(function(response) {
 				callback(response);
 			});
 		}

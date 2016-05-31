@@ -1,4 +1,4 @@
-package operation;
+package ecnu.yjsy.operation;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class LoadDataOp {
 	private static String driverName = "org.apache.hadoop.hive.jdbc.HiveDriver";
 
-	@RequestMapping(value = "/event/getbyname", method = RequestMethod.GET)
+	@RequestMapping(value = "/event/load", method = RequestMethod.GET)
 	public String loadData(@RequestParam(value = "location", defaultValue = "World") String location) {
 		try {
 			Class.forName(driverName);
